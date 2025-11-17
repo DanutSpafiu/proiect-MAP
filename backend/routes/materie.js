@@ -14,7 +14,7 @@ router.get('/', async(req, res) => {
   }
 })
 
-//POST materii
+//POST materie
 router.post('/', async(req, res) => {
   try {
     const { nume } = req.body;
@@ -27,7 +27,7 @@ router.post('/', async(req, res) => {
   }
 })
 
-//PUT materii
+//PUT materie
 router.put('/:id', async(req, res) => {
   try {
     const { id } = req.params;
@@ -37,6 +37,19 @@ router.put('/:id', async(req, res) => {
       data: { nume: nume }
     })
     res.json(materieActualizata);
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+})
+
+//DELETE materie
+router.delete('/:id', async(req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.materie.delete({
+      where: { id: id }
+    })
+    res.json({message: 'Materie stearsa cu succes'})
   } catch (error) {
     res.status(500).json({error: error.message});
   }

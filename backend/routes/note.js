@@ -49,7 +49,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// POST note by name
+// POST note folosind numele materiei
 router.post("/by-name", async (req, res) => {
   try {
     const { valoare, elevId, materie } = req.body;
@@ -78,4 +78,37 @@ router.post("/by-name", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+//PUT nota
+router.put('/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    const { valoare, elevId, materieId } = req.body;
+    
+    const notaActualizata = await prisma.nota.update({
+      where: { id: id },
+      data: { 
+        valoare: valoare,
+        elevId: elevId,
+        materieId: materieId
+      }
+    })
+    res.json(notaActualizata);
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+})
+
+//DELETE nota
+router.delete('/:id', async(req, res) => {
+  const { id } = req.params;
+  try {
+    await prisma.nota.delete({
+      where: { id: id }
+    })
+    res.json({message: 'Nota stearsa cu succes'})
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+})
 export default router;

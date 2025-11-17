@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,9 +8,33 @@ datasource db {
 }
 
 model Elev {
-  id String @unique @default(uuid())
-  name String
-  clasa String 
+  id        String   @id @default(uuid())
+  name      String
+  clasa     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Relatie cu notele
+  note      Nota[]
+}
+
+model Materie {
+  id        String   @id @default(uuid())
+  nume      String   @unique
+  createdAt DateTime @default(now())
+
+  // Relatie cu notele
+  note      Nota[]
+}
+
+model Nota {
+  id         String   @id @default(uuid())
+  valoare    Int
+  data       DateTime @default(now())
+
+  elevId     String
+  materieId  String
+
+  elev       Elev     @relation(fields: [elevId], references: [id])
+  materie    Materie  @relation(fields: [materieId], references: [id])
 }

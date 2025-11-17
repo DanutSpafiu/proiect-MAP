@@ -1,0 +1,1 @@
+# Aplicație de gestionare a unei liste de cumpărătur

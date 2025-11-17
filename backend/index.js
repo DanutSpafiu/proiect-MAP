@@ -55,6 +55,18 @@ app.put('/elevi/:id', async(req, res) => {
   }
 })
 
+app.delete('/elevi/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    await db.elev.delete({
+      where: { id: id }
+    })
+    res.json({message: 'Elev deleted succesfully'})
+  } catch (error) {
+    
+  }
+})
+
 app.listen(3000, () => {
   console.log("Server is listening on port http://localhost:3000");
 })

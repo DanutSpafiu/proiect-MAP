@@ -34,6 +34,22 @@ router.post('/', async(req, res) => {
   }
 })
 
+//GET elev by id
+router.get('/:id', async(req, res) => {
+  try {
+    const { id } = req.params;
+    const elev = await prisma.elev.findUnique({
+      where: {
+        id: id
+      }
+    })
+    res.json(elev);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+
 //PUT elevi
 router.put('/:id', async(req, res) => {
   try {

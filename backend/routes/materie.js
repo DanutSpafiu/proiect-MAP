@@ -27,6 +27,20 @@ router.post('/', async(req, res) => {
   }
 })
 
+//GET materie by id
+router.get('/:id', async(req, res) => {
+  try{
+  const { id } = req.params;
+  const materie = await prisma.materie.findUnique({
+    where: {id: id}
+  })
+  res.json(materie);
+}catch(error){
+  res.status(500).json({ error: error.message })
+}
+})
+
+
 //PUT materie
 router.put('/:id', async(req, res) => {
   try {

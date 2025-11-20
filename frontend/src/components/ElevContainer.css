@@ -1,0 +1,24 @@
+.elev-chenar {
+  border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px; 
+    max-width: 350px;
+    margin: 15px auto;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.elev-nume {
+    margin: 0 0 8px 0;
+    color: #007bff;
+    font-size: 1.2em; 
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 5px;
+}
+
+.elev-clasa {
+    margin: 0;
+    color: #555;
+    font-size: 1em;
+    font-weight: bold;
+}

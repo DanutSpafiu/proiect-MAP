@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 
-//Calcul medie pentru un elev la o materie
+//Calcul mediei pentru un elev la o materie
 router.get('/medie/:elevId/:materieId', async(req, res) => {
   try {
     const { elevId, materieId } = req.params;

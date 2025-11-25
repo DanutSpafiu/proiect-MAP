@@ -1,5 +1,5 @@
 import React from 'react'
-import './ElevContainer.css'
+import '../styles/ElevContainer.css'
 const ElevContainer = ({ id, nume, clasa, onDelete }) => {
   if(!nume) {
     return (
@@ -19,7 +19,6 @@ const ElevContainer = ({ id, nume, clasa, onDelete }) => {
         >
           ✖
         </button>
-
         <h3 className='elev-nume'>
           👤 {nume}
         </h3>

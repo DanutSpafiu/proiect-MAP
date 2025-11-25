@@ -1,24 +1,100 @@
 .elev-chenar {
-  border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px; 
-    max-width: 350px;
-    margin: 15px auto;
-    background-color: #f7f7f7;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 48px 20px 20px;
+    border-radius: 12px;
+    max-width: 760px;
+    margin: 18px auto;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f7ff 100%);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    transition: transform .12s ease, box-shadow .12s ease;
+    border: 2px solid #e2e8f0;
+}
+.elev-chenar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
 }
 
 .elev-nume {
-    margin: 0 0 8px 0;
-    color: #007bff;
-    font-size: 1.2em; 
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 5px;
+    margin: 0;
+    color: #0f172a;
+    font-size: 1.4rem;
+    font-weight: 700;
 }
 
 .elev-clasa {
-    margin: 0;
-    color: #555;
-    font-size: 1em;
-    font-weight: bold;
+    margin: 6px 0 0 0;
+    color: #475569;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.elev-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+.elev-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg,#e6f0ff,#dbe9ff);
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex: 0 0 64px;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #e11d48;
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background .12s ease, color .12s ease;
+}
+
+.delete-btn:hover {
+    background: rgba(225,29,72,0.08);
+    color: #be123c;
+}
+
+@media (max-width: 520px) {
+    .elev-chenar {
+        padding: 14px 16px;
+        gap: 12px;
+        max-width: 94%;
+    }
+    .elev-avatar {
+        width: 52px;
+        height: 52px;
+        font-size: 1rem;
+    }
+    .elev-nume { font-size: 1.15rem }
+    .elev-clasa { font-size: 0.95rem }
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #c00;
+    font-size: 1rem;
+    cursor: pointer;
+    float: right;
+}
+
+.delete-btn:hover {
+    color: #900;
 }

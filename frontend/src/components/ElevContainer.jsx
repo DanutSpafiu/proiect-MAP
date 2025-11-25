@@ -1,6 +1,6 @@
 import React from 'react'
 import './ElevContainer.css'
-const ElevContainer = ({ nume, clasa }) => {
+const ElevContainer = ({ id, nume, clasa, onDelete }) => {
   if(!nume) {
     return (
       <div>Incarcare elev...</div>
@@ -8,6 +8,17 @@ const ElevContainer = ({ nume, clasa }) => {
     }
     return (
       <div className='elev-chenar'>
+        <button
+          className="delete-btn"
+          onClick={() => {
+            if (onDelete) {
+              if (confirm('Sigur stergi acest elev?')) onDelete(id)
+            }
+          }}
+          aria-label="Sterge elev"
+        >
+          ✖
+        </button>
 
         <h3 className='elev-nume'>
           👤 {nume}

@@ -33,3 +33,13 @@
 .add-elev-btn:hover {
   transform: translateY(-2px);
 }
+
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #0f172a;
+  font-weight: 700;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.back-btn:hover { opacity: 0.9 }

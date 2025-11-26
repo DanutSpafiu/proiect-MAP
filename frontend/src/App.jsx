@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import  ElevContainer  from './components/ElevContainer.jsx'
+import AdaugareElev from './pages/AdaugareElev.jsx'
 import './styles/App.css'
 
 function App() {
   const [elevi, setElevi] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [page, setPage] = useState('list')
 
   useEffect(() => {
     const fetchElevi = async () => {
@@ -33,6 +35,15 @@ function App() {
     }
   }
 
+  if (page === 'add') {
+    return (
+      <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
+        <button className="back-btn" onClick={() => setPage('list')}>⬅ Înapoi</button>
+        <AdaugareElev />
+      </div>
+    )
+  }
+
   return (
     <div>
       {loading && <p>Loading elevi...</p>}
@@ -40,11 +51,7 @@ function App() {
       {!loading && !error && elevi.length === 0 && (
         <div className="empty-state">
           <p className="empty-text">Nu există elevi în baza de date.</p>
-          <button className="add-elev-btn"
-          onClick = {() => {
-            alert('aici ar trb sa apara o pagina unde sa scrii numele si clasa')
-          }}
-          >Adaugă un elev</button>
+          <button className="add-elev-btn" onClick={() => setPage('add')}>Adaugă un elev</button>
         </div>
       )}
       {!loading && !error && elevi.map((e) => (

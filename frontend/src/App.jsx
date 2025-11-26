@@ -39,7 +39,7 @@ function App() {
     return (
       <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
         <button className="back-btn" onClick={() => setPage('list')}>⬅ Înapoi</button>
-        <AdaugareElev />
+        <AdaugareElev onCreate={(newElev) => { setElevi(prev => [newElev, ...prev]); setPage('list') }} />
       </div>
     )
   }
@@ -48,12 +48,11 @@ function App() {
     <div>
       {loading && <p>Loading elevi...</p>}
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-      {!loading && !error && elevi.length === 0 && (
+    
         <div className="empty-state">
-          <p className="empty-text">Nu există elevi în baza de date.</p>
           <button className="add-elev-btn" onClick={() => setPage('add')}>Adaugă un elev</button>
         </div>
-      )}
+   
       {!loading && !error && elevi.map((e) => (
         <ElevContainer key={e.id} id={e.id} nume={e.name} clasa={e.clasa} onDelete={handleDelete} />
       ))}

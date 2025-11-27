@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import  ElevContainer  from './components/ElevContainer.jsx'
 import AdaugareElev from './pages/AdaugareElev.jsx'
+import ElevInfo from './pages/ElevInfo.jsx'
 import './styles/App.css'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [page, setPage] = useState('list')
+  const [selectedElev, setSelectedElev] = useState(null)
 
   useEffect(() => {
     const fetchElevi = async () => {
@@ -44,6 +46,16 @@ function App() {
     )
   }
 
+  if (page === 'info') {
+    const elev = elevi.find(e => e.id === selectedElev) || null
+    return (
+      <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
+        <button className="back-btn" onClick={() => setPage('list')}>⬅ Înapoi</button>
+        <ElevInfo elev={elev} />
+      </div>
+    )
+  }
+
   return (
     <div>
       {loading && <p>Loading elevi...</p>}
@@ -54,7 +66,7 @@ function App() {
         </div>
    
       {!loading && !error && elevi.map((e) => (
-        <ElevContainer key={e.id} id={e.id} nume={e.name} clasa={e.clasa} onDelete={handleDelete} />
+        <ElevContainer key={e.id} id={e.id} nume={e.name} clasa={e.clasa} onDelete={handleDelete} onView={(id) => { setSelectedElev(id); setPage('info') }} />
       ))}
     </div>
   )

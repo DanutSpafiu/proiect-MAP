@@ -20,6 +20,17 @@ const ElevContainer = ({ id, nume, clasa, onDelete, onView }) => {
         ✖
       </button>
 
+        <button
+        className=""
+        onClick={() => {
+          {/*to be added*/}
+          }
+        }
+        aria-label="Adauga nota"
+      >
+        ➕
+      </button>
+
       <div className='elev-info'>
         <h3 className='elev-nume'> {nume}</h3>
         <p className='elev-clasa'>Clasa: {clasa}</p>

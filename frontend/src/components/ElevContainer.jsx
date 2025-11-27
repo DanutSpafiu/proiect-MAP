@@ -25,7 +25,7 @@ const ElevContainer = ({ id, nume, clasa, onDelete }) => {
         <p className='elev-clasa'>
           Clasa: {clasa}
         </p>
-
+        <button className='button-viewElev'>👁️</button>
       </div>
     )
 }

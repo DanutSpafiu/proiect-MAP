@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     gap: 18px;
-    padding: 20px 48px 20px 20px;
+    padding: 20px 48px 20px 68px;
     border-radius: 12px;
     max-width: 760px;
     margin: 18px auto;
@@ -54,21 +54,26 @@
 
 .delete-btn {
     position: absolute;
-    top: 12px;
     right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     background: transparent;
     border: none;
     color: #e11d48;
     font-size: 1.15rem;
     cursor: pointer;
-    padding: 6px;
+    padding: 8px;
     border-radius: 8px;
-    transition: background .12s ease, color .12s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .12s ease, color .12s ease, transform .08s ease;
 }
 
 .delete-btn:hover {
     background: rgba(225,29,72,0.08);
     color: #be123c;
+    transform: translateY(-50%) scale(1.03);
 }
 
 @media (max-width: 520px) {
@@ -85,16 +90,27 @@
     .elev-nume { font-size: 1.15rem }
     .elev-clasa { font-size: 0.95rem }
 }
-
-.delete-btn {
-    background: transparent;
+.button-viewElev {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
     border: none;
-    color: #c00;
-    font-size: 1rem;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     cursor: pointer;
-    float: right;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
-.delete-btn:hover {
-    color: #900;
+
+@media (max-width: 520px) {
+    .elev-chenar { padding-left: 56px }
+    .button-viewElev { left: 10px; width: 40px; height: 40px }
 }

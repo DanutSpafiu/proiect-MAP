@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/ElevContainer.css'
 
 const ElevContainer = ({ id, nume, clasa, onDelete, onView }) => {
-  if (!nume) return <div>Incarcare elev...</div>
+  if (!nume) return <div>Incarcare elevi...</div>
 
   return (
     <div className='elev-chenar'>
@@ -21,7 +21,7 @@ const ElevContainer = ({ id, nume, clasa, onDelete, onView }) => {
       </button>
 
       <div className='elev-info'>
-        <h3 className='elev-nume'>👤 {nume}</h3>
+        <h3 className='elev-nume'> {nume}</h3>
         <p className='elev-clasa'>Clasa: {clasa}</p>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../styles/ElevInfo.css'
 
-const ElevInfo = ({ elev }) => {
+const ElevInfo = ({ elev, reloadKey }) => {
   const [note, setNote] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -33,7 +33,7 @@ const ElevInfo = ({ elev }) => {
       }
     }
     fetchNote()
-  }, [elev])
+  }, [elev, reloadKey])
 
   if (!elev) return <div>Elev not selected</div>
 

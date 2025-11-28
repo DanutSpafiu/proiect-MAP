@@ -109,6 +109,24 @@
     font-size: 1rem;
 }
 
+.addNote-btn {
+    position: absolute;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+}
 
 @media (max-width: 520px) {
     .elev-chenar { padding-left: 56px }

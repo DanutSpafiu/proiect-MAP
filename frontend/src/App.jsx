@@ -3,6 +3,7 @@ import axios from 'axios'
 import  ElevContainer  from './components/ElevContainer.jsx'
 import AdaugareElev from './pages/AdaugareElev.jsx'
 import ElevInfo from './pages/ElevInfo.jsx'
+import AdaugaNote  from './pages/AdaugaNote.jsx'
 import './styles/App.css'
 
 function App() {
@@ -37,6 +38,11 @@ function App() {
     }
   }
 
+  const handleAddNote = (id) => {
+    setSelectedElev(id)
+    setPage('addNote')
+  }
+
   if (page === 'add') {
     return (
       <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
@@ -55,6 +61,16 @@ function App() {
       </div>
     )
   }
+  
+  if(page === 'addNote') {
+    const elev = elevi.find(e => e.id === selectedElev) || null
+    return (
+      <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
+        <button className="back-btn" onClick={() => setPage('list')}>⬅ Înapoi</button>
+        <AdaugaNote elev={elev} />
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -66,7 +82,15 @@ function App() {
         </div>
    
       {!loading && !error && elevi.map((e) => (
-        <ElevContainer key={e.id} id={e.id} nume={e.name} clasa={e.clasa} onDelete={handleDelete} onView={(id) => { setSelectedElev(id); setPage('info') }} />
+        <ElevContainer 
+        key={e.id} 
+        id={e.id} 
+        nume={e.name} 
+        clasa={e.clasa} 
+        onDelete={handleDelete} 
+        onView={(id) => { setSelectedElev(id); setPage('info') }}
+        onAddNote={handleAddNote}
+        />
       ))}
     </div>
   )

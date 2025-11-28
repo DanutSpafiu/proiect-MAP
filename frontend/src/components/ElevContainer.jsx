@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/ElevContainer.css'
 
-const ElevContainer = ({ id, nume, clasa, onDelete, onView }) => {
+const ElevContainer = ({ id, nume, clasa, onDelete, onView, onAddNote }) => {
   if (!nume) return <div>Incarcare elevi...</div>
 
   return (
@@ -21,11 +21,10 @@ const ElevContainer = ({ id, nume, clasa, onDelete, onView }) => {
       </button>
 
         <button
-        className=""
+        className="addNote-btn"
         onClick={() => {
-          {/*to be added*/}
-          }
-        }
+          if (onAddNote) onAddNote(id)
+        }}
         aria-label="Adauga nota"
       >
         ➕

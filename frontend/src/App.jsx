@@ -63,11 +63,17 @@ function App() {
   }
   
   if(page === 'addNote') {
-    const elev = elevi.find(e => e.id === selectedElev) || null
     return (
       <div style={{ maxWidth: 920, margin: '24px auto', padding: 12 }}>
         <button className="back-btn" onClick={() => setPage('list')}>⬅ Înapoi</button>
-        <AdaugaNote elev={elev} />
+        <AdaugaNote 
+        elevId={selectedElev}
+        onCreated={(notaNoua) => {
+          console.log('Nota adăugată:', notaNoua)
+          setPage('list')
+        }}
+        onCancel={() => setPage('list')}
+      />
       </div>
     )
   }

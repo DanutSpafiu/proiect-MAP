@@ -35,24 +35,144 @@ const ElevInfo = ({ elev, reloadKey }) => {
     fetchNote()
   }, [elev, reloadKey])
 
-  if (!elev) return <div>Elev not selected</div>
+  const calculateAverage = () => {
+    if (note.length === 0) return 0
+    const sum = note.reduce((acc, n) => acc + n.valoare, 0)
+    return (sum / note.length).toFixed(2)
+  }
+
+  const groupedNotes = note.reduce((acc, n) => {
+    const materie = n.materieName || n.materieId
+    if (!acc[materie]) {
+      acc[materie] = []
+    }
+    acc[materie].push(n)
+    return acc
+  }, {})
+
+  const getGradeColor = (valoare) => {
+    if (valoare >= 9) return 'grade-excellent'
+    if (valoare >= 7) return 'grade-good'
+    if (valoare >= 5) return 'grade-average'
+    return 'grade-poor'
+  }
+
+  if (!elev) {
+    return (
+      <div className="empty-state-container">
+        <div className="empty-state-card">
+          <div className="empty-icon">👤</div>
+          <p className="empty-text">Niciun elev selectat</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className='elev-info-container'>
-      <h2 className='titlu'>Note pentru {elev.name}</h2>
+    <div className="elev-info-modern">
+      <div className="header-card">
+        <div className="student-header">
+          <div className="avatar-circle">
+            {elev.name.charAt(0).toUpperCase()}
+          </div>
+          <div className="student-details">
+            <h2 className="student-name">{elev.name}</h2>
+            <p className="student-class">Clasa {elev.clasa}</p>
+          </div>
+        </div>
+        
+        {note.length > 0 && (
+          <div className="average-badge">
+            <p className="average-label">Media generală</p>
+            <p className="average-value">{calculateAverage()}</p>
+          </div>
+        )}
+      </div>
 
-      {loading && <p>Se încarcă note...</p>}
-      {error && <p style={{ color: 'red' }}>Eroare: {error}</p>}
+      {loading && (
+        <div className="loading-card">
+          <div className="spinner"></div>
+          <p>Se încarcă notele...</p>
+        </div>
+      )}
 
-      {!loading && !error && note.length === 0 && <p>Nu există note pentru acest elev.</p>}
+      {error && (
+        <div className="error-card">
+          <span className="error-icon">⚠️</span>
+          <div>
+            <h3 className="error-title">Eroare</h3>
+            <p className="error-message">{error}</p>
+          </div>
+        </div>
+      )}
+
+      {!loading && !error && note.length === 0 && (
+        <div className="empty-notes-card">
+          <div className="empty-icon-large">📝</div>
+          <h3 className="empty-title">Nicio notă încă</h3>
+          <p className="empty-subtitle">Nu există note pentru acest elev.</p>
+        </div>
+      )}
 
       {!loading && !error && note.length > 0 && (
-        <div className='chenarElev'>
-          <ul>
-            {note.map(n => (
-              <li key={n.id}>Materie: {n.materieName || n.materieId} — Nota: {n.valoare}</li>
-            ))}
-          </ul>
+        <div className="subjects-container">
+          {Object.entries(groupedNotes).map(([materie, noteMaterie]) => {
+            const average = (noteMaterie.reduce((acc, n) => acc + n.valoare, 0) / noteMaterie.length).toFixed(2)
+            
+            return (
+              <div key={materie} className="subject-card">
+                <div className="subject-header">
+                  <h3 className="subject-name">{materie}</h3>
+                  <div className="subject-average">
+                    <p className="subject-average-label">Medie</p>
+                    <p className="subject-average-value">{average}</p>
+                  </div>
+                </div>
+                
+                <div className="grades-grid">
+                  {noteMaterie.map((n) => (
+                    <div key={n.id} className={`grade-card ${getGradeColor(n.valoare)}`}>
+                      <div className="grade-value">{n.valoare}</div>
+                      <div className="grade-date">
+                        {new Date(n.data).toLocaleDateString('ro-RO', { 
+                          day: '2-digit', 
+                          month: 'short' 
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {!loading && !error && note.length > 0 && (
+        <div className="stats-container">
+          <div className="stat-card">
+            <div className="stat-icon stat-icon-blue">📊</div>
+            <div className="stat-content">
+              <p className="stat-label">Total note</p>
+              <p className="stat-value">{note.length}</p>
+            </div>
+          </div>
+          
+          <div className="stat-card">
+            <div className="stat-icon stat-icon-purple">📚</div>
+            <div className="stat-content">
+              <p className="stat-label">Materii</p>
+              <p className="stat-value">{Object.keys(groupedNotes).length}</p>
+            </div>
+          </div>
+          
+          <div className="stat-card">
+            <div className="stat-icon stat-icon-green">🏆</div>
+            <div className="stat-content">
+              <p className="stat-label">Nota maximă</p>
+              <p className="stat-value">{Math.max(...note.map(n => n.valoare))}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>

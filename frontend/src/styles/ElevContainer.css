@@ -95,6 +95,16 @@
   background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
 }
 
+.buttons-right {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.elev-chenar {
+  justify-content: space-between !important;
+}
+
 .addNote-btn {
   background: var(--gradient-add);
   color: white;

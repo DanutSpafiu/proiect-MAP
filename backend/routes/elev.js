@@ -72,12 +72,13 @@ router.put('/:id', async(req, res) => {
 router.delete('/:id', async(req, res) => {
   try {
     const { id } = req.params;
-    await prisma.elev.delete({
-      where: { id: id }
-    })
-    res.json({message: 'Elev deleted succesfully'})
+    await prisma.nota.deleteMany({ where: { elevId: id } });
+
+    await prisma.elev.delete({ where: { id: id } });
+    res.json({ message: 'Elev deleted succesfully' });
   } catch (error) {
-    
+    console.error('Error deleting elev:', error);
+    res.status(500).json({ error: 'Eroare la stergerea elevului', details: error.message });
   }
 })
 

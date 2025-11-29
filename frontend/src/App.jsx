@@ -89,7 +89,7 @@ function App() {
    
       {!loading && !error && elevi.map((e) => (
         <ElevContainer 
-        key={e.id} 
+        key={e.id}
         id={e.id} 
         nume={e.name} 
         clasa={e.clasa} 

@@ -4,7 +4,7 @@ import '../styles/ElevContainer.css'
 const ElevContainer = ({ id, nume, clasa, onDelete, onView, onAddNote }) => {
   if (!nume) return <div>Incarcare elevi...</div>
 
-  return (
+  return (  
     <div className='elev-chenar'>
       <button className='button-viewElev' onClick={() => { if (onView) onView(id) }} aria-label="Vezi elev">👁️</button>
 

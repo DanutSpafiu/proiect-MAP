@@ -52,7 +52,7 @@ const AdaugaNote = ({ elevId, onCreated, onCancel }) => {
         materieId: materieId   // String (ID-ul materiei)
       }
       
-      console.log('Trimit payload:', payload) // Pentru debugging
+      console.log('Trimit payload:', payload) 
       
       const res = await axios.post('http://localhost:3000/note', payload)
       const created = res.data

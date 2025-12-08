@@ -51,8 +51,7 @@ const ElevInfo = ({ elev, reloadKey }) => {
   }, {})
 
   const getGradeColor = (valoare) => {
-    if (valoare >= 9) return 'grade-excellent'
-    if (valoare >= 7) return 'grade-good'
+    if (valoare >= 8) return 'grade-excellent'
     if (valoare >= 5) return 'grade-average'
     return 'grade-poor'
   }
@@ -85,6 +84,9 @@ const ElevInfo = ({ elev, reloadKey }) => {
           <div className="average-badge">
             <p className="average-label">Media generală</p>
             <p className="average-value">{calculateAverage()}</p>
+            <p className={`promotion-status ${parseFloat(calculateAverage()) >= 4.5 ? 'promovat' : 'nepromovat'}`}>
+              {parseFloat(calculateAverage()) >= 4.5 ? 'Promovat' : 'Nepromovat'}
+            </p>
           </div>
         )}
       </div>

@@ -85,9 +85,4 @@ npm run dev
 - Frontend uses simple in-memory navigation (no react-router).
 - For production, consider switching to a persistent DB and adding authentication.
 
-## License
-MIT
-
----
-
 Made by Danut Spafiu

@@ -83,6 +83,5 @@ npm run dev
 - CORS is enabled in the backend for local development.
 - All data is stored in SQLite; no external DB required.
 - Frontend uses simple in-memory navigation (no react-router).
-- For production, consider switching to a persistent DB and adding authentication.
 
 Made by Danut Spafiu
